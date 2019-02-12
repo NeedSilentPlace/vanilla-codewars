@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel='stylesheet' href='/stylesheets/problem.css' />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="home">
+            <a href="http://localhost:3000/">Code Wars</a>
+        </div>
+        <div class="container">
+            <div class="header">
+                <div>
+                    <div class="level">Level <%= problem.difficulty_level %></div>
+                    <div class="title"><%= problem.title %></div>
+                    <div class="solutionCount"><%= problem.solution_count %> solved</div>
+                </div>
+                <div>Description</div>
+                <div>
+                    <%= problem.description %>
+                </div>
+                <% if(testResult) { %>
+                    <div class="result">
+                        <% for(let i = 0; i < testResult.length; i++) { %>
+                            <div class="<%= testResult[i][1] %>">
+                                case <%= i + 1 %> : <%= testResult[i][0] %>
+                            </div>
+                        <% } %>
+                    </div>
+                <% } %>
+                <% if(errorMessage) { %>
+                    <div class="errorMessage">
+                        <%= errorMessage %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="solutionArea">
+                <div>Solution</div>
+                <div>
+                    <form action="/problems/<%= problem.id %>" method="POST">
+                        <textarea name="answer" rows="22" cols="88"><%= userSolution %></textarea>
+                        <input type="submit" id="submitButton" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
