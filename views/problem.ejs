@@ -2,7 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel='stylesheet' href='/stylesheets/problem.css' />
+        <link rel="stylesheet" href="/stylesheets/problem.css" />
+        <link rel="stylesheet" href="/lib/codemirror.css" />
+        <link rel="stylesheet" href="/stylesheets/night.css" />
+        <script src="/lib/codemirror.js"></script>
+        <script src="/mode/javascript/javascript.js"></script>
         <title>Document</title>
     </head>
     <body>
@@ -39,11 +43,12 @@
                 <div>Solution</div>
                 <div>
                     <form action="/problems/<%= problem.id %>" method="POST">
-                        <textarea name="answer" rows="22" cols="88"><%= userSolution %></textarea>
+                        <textarea id="textArea" name="answer" rows="22" cols="88"><%= userSolution %></textarea>
                         <input type="submit" id="submitButton" value="Submit">
                     </form>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="/javascripts/index.js"></script>
     </body>
 </html>

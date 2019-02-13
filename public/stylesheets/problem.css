@@ -1,5 +1,5 @@
 body {
-  background-color: #303133;
+  background-color: #242425;
   color: #efefef;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -84,16 +84,6 @@ body {
   justify-items: center;
   height: 470px;
 }
-textarea {
-  margin-right: 20px;
-  background-color: rgba(26, 25, 25, 0.5);
-  border: 1px solid orange;
-  box-sizing: border-box;
-  padding: 10px;
-  color: orange;
-  outline: none;
-  font-size: 15px;
-}
 input {
   background-color: rgba(255, 255, 255, 0.1);
   outline: none;
@@ -102,6 +92,7 @@ input {
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
+  float: right;
 }
 .result {
   display: flex;
