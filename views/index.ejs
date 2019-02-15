@@ -6,24 +6,24 @@
   </head>
   <body>
     <div class="container">
-      <div class="header"><a href="http://localhost:3000/">Code Wars</a></div>
+      <div class="header"><a href="/">Code Wars</a></div>
       <div class="content">
-        <div class="level">
+        <div class="levels">
           <% for(let i = 0; i < difficultyLevels.length; i++) { %>
             <div>
-              <a href="http://localhost:3000/?difficulty_level=<%= difficultyLevels[i] %>">
+              <span class="level" data-level="<%= difficultyLevels[i] %>" href="http://localhost:3000/?difficulty_level=<%= difficultyLevels[i] %>">
                 Level <%= difficultyLevels[i] %>
-              </a>
+              </span>
             </div>
           <% } %>
         </div>
-        <div>
+        <div class="problemContainer">
           <% for(let i = 0; i < problems.length; i++) { %>
             <div class="problem">
               <div class="problemHeader">
                 <div>Level <%= problems[i].difficulty_level %></div>
                 <div>
-                  <a href="http://localhost:3000/problems/<%= problems[i].id %>">
+                  <a href="/problems/<%= problems[i]._id %>">
                     <%= problems[i].title %>
                   </a>
                 </div>
@@ -35,5 +35,6 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
   </body>
 </html>

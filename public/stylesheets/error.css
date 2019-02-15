@@ -1,0 +1,31 @@
+html {
+    background-color: #242425;
+    color: #fefefe;
+}
+body {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    height: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+body > h1:nth-child(1) {
+    border-bottom: 1px solid #d33031;
+}
+body > div {
+    border: 1px solid #21c76e;
+    margin-top: 15px;
+    padding: 15px;
+}
+body > div > a {
+    text-decoration: none;
+    color: #21c76e;
+}

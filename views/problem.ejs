@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="home">
-            <a href="http://localhost:3000/">Code Wars</a>
+            <a href="/">Code Wars</a>
         </div>
         <div class="container">
             <div class="header">
@@ -24,31 +24,15 @@
                 <div>
                     <%= problem.description %>
                 </div>
-                <% if(testResult) { %>
-                    <div class="result">
-                        <% for(let i = 0; i < testResult.length; i++) { %>
-                            <div class="<%= testResult[i][1] %>">
-                                case <%= i + 1 %> : <%= testResult[i][0] %>
-                            </div>
-                        <% } %>
-                    </div>
-                <% } %>
-                <% if(errorMessage) { %>
-                    <div class="errorMessage">
-                        <%= errorMessage %>
-                    </div>
-                <% } %>
             </div>
             <div class="solutionArea">
                 <div>Solution</div>
                 <div>
-                    <form action="/problems/<%= problem.id %>" method="POST">
-                        <textarea id="textArea" name="answer" rows="22" cols="88"><%= userSolution %></textarea>
-                        <input type="submit" id="submitButton" value="Submit">
-                    </form>
+                    <textarea id="textArea" name="answer" rows="22" cols="88"></textarea>
+                    <span class="submitButton" data-id="<%= problem._id %>">Submit</span>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="/javascripts/index.js"></script>
+        <script type="text/javascript" src="/javascripts/problem.js"></script>
     </body>
 </html>
