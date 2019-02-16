@@ -2,33 +2,61 @@ const express = require('express');
 const router = express.Router();
 const vm = require('vm')
 const Problem = require('../models/Problems');
+const auth = require('../controllers/AuthController');
+
+router.get('/register', auth.register);
+router.post('/register', auth.doRegister);
+router.get('/login', auth.login);
+router.post('/login', auth.doLogin);
+router.get('/logout',auth.logout);
 
 router.get('/', (req, res) => {
-  if(req.query.difficulty_level) {
-    const difficultyLevel = parseInt(req.query.difficulty_level);
-    
-    Problem.find({ difficulty_level: difficultyLevel })
-      .then(problemDatas => {
-        res.json(problemDatas);
-      });
+  if(!req.user) {
+    if(req.query.difficulty_level) {
+      const difficultyLevel = parseInt(req.query.difficulty_level);
+      
+      Problem.find({ difficulty_level: difficultyLevel })
+        .then(problemDatas => {
+          res.json(problemDatas);
+        });
+    } else {
+      Problem.find()
+        .then(problemDatas => {
+          const difficultyLevels = [...new Set(problemDatas.map(data => data.difficulty_level))];
+  
+          res.render('index', { problems: problemDatas, difficultyLevels, user: '' });
+        });
+    }
   } else {
-    Problem.find()
-      .then(problemDatas => {
-        const difficultyLevels = [...new Set(problemDatas.map(data => data.difficulty_level))];
-
-        res.render('index', { problems: problemDatas, difficultyLevels })
-      });
+    if(req.query.difficulty_level) {
+      const difficultyLevel = parseInt(req.query.difficulty_level);
+      
+      Problem.find({ difficulty_level: difficultyLevel })
+        .then(problemDatas => {
+          res.json(problemDatas);
+        });
+    } else {
+      Problem.find()
+        .then(problemDatas => {
+          const difficultyLevels = [...new Set(problemDatas.map(data => data.difficulty_level))];
+  
+          res.render('index', { problems: problemDatas, difficultyLevels, user: req.user.username });
+        });
+    }
   }
 });
 
 router.get('/problems/:problem_id', (req, res, next) => {
+  if(!req.user) {
+    return res.redirect('/login');
+  }
   Problem.findById(req.params.problem_id, function(err, problem) {
     if(err) {
-      console.log(err.status)
-      err.message = '문제를 찾을 수 없습니다'
+      err.message = '문제를 찾을 수 없습니다';
       err.status = 404;
       return next(err);
     }
+    
     res.render('problem', { problem });
   });
 });
@@ -46,8 +74,9 @@ router.post('/problems/:problem_id', (req, res, next) => {
 
     try {
       for(let i = 0; i < problem.tests.length; i++) {
-        const script = new vm.Script(`function solution(arg) {
-          return (${userSolution})(arg)
+        const script = new vm.Script(`
+          function solution(arg) {
+            return (${userSolution})(arg)
           }; 
           result = ${problem.tests[i].code};`);
         const context = vm.createContext(sandbox);

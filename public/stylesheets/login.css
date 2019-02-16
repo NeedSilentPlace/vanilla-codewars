@@ -1,0 +1,60 @@
+html {
+  background-color: #242425;
+  color: #fefefe;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fefefe;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+.userInfo {
+  position: relative;
+  padding: 10px;
+  bottom: 25px;
+}
+.userInfo > input {
+  text-align: center;
+  background-color: #242425;
+  color: #fefefe;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #fefefe;
+}
+.confirm {
+  text-align: center;
+}
+.confirm > input {
+  background-color: #242425;
+  padding: 10px 15px;
+  font-size: 15px;
+  outline: none;
+  color: #21c76e;
+  border: none;
+  border-bottom: 1px solid #21c76e;
+  cursor: pointer;
+  transition: .5s;
+}
+.confirm > a {
+  text-decoration: none;
+  font-size: 15px;
+  margin-left: 5px;
+  padding: 10px 15px;
+  color: #d33031;
+  border-bottom: 1px solid #d33031;
+  transition: .5s;
+}
+.error {
+  margin-top: 15px;
+  color: #d33031;
+}
