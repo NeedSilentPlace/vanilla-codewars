@@ -7,17 +7,17 @@ userController.register = function(req, res) {
 };
 userController.doRegister = function(req, res) {
   User.register(new User({
-    username: req.body.username,
-    name: req.body.name
-  }),
-   req.body.password,
-   function(err) {
-    if(err) {
-      return res.render('register', { error: 'Please fill all blank' });
-    }
+      username: req.body.username,
+      name: req.body.name
+    }),
+    req.body.password,
+    function(err) {
+      if(err) {
+        return res.render('register', { error: 'Please fill all blank' });
+      }
 
-    passport.authenticate('local')(req, res, function() {
-      res.redirect('/');
+      passport.authenticate('local')(req, res, function() {
+        res.redirect('/');
     });
   });
 };
