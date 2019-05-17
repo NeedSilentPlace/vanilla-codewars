@@ -10,8 +10,10 @@
 
 ### Set up
 
-  - `npm install`
-  
+```sh
+npm install
+``` 
+
 ## Development
 
 ```sh
