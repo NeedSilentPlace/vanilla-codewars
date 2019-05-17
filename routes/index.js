@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const express = require('express');
 const router = express.Router();
 const vm = require('vm')
@@ -9,6 +11,15 @@ router.post('/register', auth.doRegister);
 router.get('/login', auth.login);
 router.post('/login', auth.doLogin);
 router.get('/logout',auth.logout);
+console.log(1);
+fs.readFile('./routes/hell.txt', 'utf8', function(err, data) {
+  if(err) {
+    throw err;
+  }
+  console.log(data);
+});
+console.log(2);
+
 
 router.get('/', (req, res) => {
   if(!req.user) {
